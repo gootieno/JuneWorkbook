@@ -15,6 +15,7 @@ an example wireframe. You will do this in three phases:
 
 1. Clone the starter from GitHub
 2. Run `npm install` to install dependencies
+3. Run `npm test` at the end of each phase to check your work
 
 ## Phase 1: Creating individual HTML elements from wireframe
 
