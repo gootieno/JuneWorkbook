@@ -1,0 +1,10 @@
+#navbar-container {
+    border: 2px solid red;
+    /* padding: 10px; */
+}
+
+.nav-items {
+    border: 2px solid blue;
+    display: inline-block;
+    margin: 10px;
+}
