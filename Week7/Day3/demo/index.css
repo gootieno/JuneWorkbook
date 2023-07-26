@@ -1,0 +1,33 @@
+#parent-container {
+    border: 2px solid black;
+    display: flex;
+    height: 50px;
+
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+#child-container {
+    border: 2px solid red;
+    height: 50px;
+    width: 300px;
+    display: inherit;
+    align-items: center;
+    justify-content:center;
+}
+
+
+
+
+
+#parent-container {
+    flex-direction: column;
+}
