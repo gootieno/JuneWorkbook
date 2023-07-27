@@ -1,0 +1,70 @@
+:root {
+    --black: #000000;
+    --medium-yellow: #ffc414;
+}
+
+body, h1,h2 {
+    margin: 0;
+}
+
+
+#header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--black);
+    padding: 15px 40px;
+    background-color: var(--medium-yellow);
+    position: sticky;
+    top: 0;
+}
+
+#logo-container {
+    width: 100px;
+
+}
+
+#logo-image {
+    width: 100%;
+}
+
+#navigation-container{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.nav-links {
+    color: var(--black);
+    text-decoration: none;
+}
+
+.link-button {
+    background-color: var(--black);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+#upper-body {
+    display: flex;
+    border-bottom: 1px solid var(--black);
+    padding: 80px 10px 80px 40px;
+    background-color: var(--medium-yellow);
+}
+
+#curious-heading {
+    font-size: 5rem;
+}
+
+#curious-description {
+    margin-bottom: 30px;
+    width: 350px;
+}
+
+
+.curious-link {
+    text-decoration: none;
+    padding-left: 40px;
+    padding-right: 40px;
+}
