@@ -29,21 +29,16 @@
             <a class="link-button curious-link curious-items" href="#">Start reading</a>
         </div>
         <div id="m-container">
-            <span>M</span>
-            <span>M</span>
-            <span>M</span>
-            <span>M</span>
-            <span>M</span>
-            <span>M</span>
-            <span>M</span>
-            <span>M</span>
-            <span>M</span>
-            <span>M</span>
-            <span>M</span>
-            <span>M</span>
-            <span>M</span>
-            <span>M</span>
+            
         </div>
     </div>
+    <script>
+        const container = document.getElementById('m-container');
+        for(let i =  0; i < 500; i++){
+            const span = document.createElement('span');
+            span.innerText = 'M'
+            container.append(span)
+        }
+    </script>
 </body>
 </html>

@@ -49,8 +49,15 @@ body, h1,h2 {
 #upper-body {
     display: flex;
     border-bottom: 1px solid var(--black);
-    padding: 80px 10px 80px 40px;
+
     background-color: var(--medium-yellow);
+    gap: 80px;
+    justify-content: flex-end;
+}
+
+#curious-container {
+    margin-left: 100px;
+    padding: 60px 0px 60px
 }
 
 #curious-heading {
@@ -67,4 +74,11 @@ body, h1,h2 {
     text-decoration: none;
     padding-left: 40px;
     padding-right: 40px;
+}
+
+#m-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 40%;
+    justify-content: end;
 }
