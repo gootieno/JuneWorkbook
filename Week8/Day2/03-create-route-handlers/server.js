@@ -35,14 +35,52 @@ const server = http.createServer((req, res) => {
     // Do not edit above this line
 
     // define route handlers here
-    if (req.method === "GET" && req.url === "/cats") {
-      const responseBody = "cats";
+    if (req.method === "GET" && req.url === "/") {
+      const responseBody = "Dog Club";
 
       res.statusCode = 200;
       res.setHeader("Content-Type", "text/plain");
       return res.end(responseBody);
     }
 
+    if (req.method === "GET" && req.url === "/dogs") {
+      const responseBody = "Dog Index";
+
+      res.statusCode = 200;
+      res.setHeader("Content-Type", "text/plain");
+      return res.end(responseBody);
+    }
+
+    if (req.method === "GET" && req.url.startsWith("/dogs/")) {
+      console.log("request url ", req.url);
+      const splitUrl = req.url.split("/");
+      console.log("split url ", splitUrl);
+      if (splitUrl.length === 3) {
+        console.log("new or id ", splitUrl[2]);
+
+        const dogId = splitUrl[2];
+        if (dogId === "new") {
+          const responseBody = "Create form page";
+
+          res.statusCode = 200;
+          res.setHeader("Content-Type", "text/plain");
+          return res.end(responseBody);
+        } else {
+          const responseBody = `Dog details for dog id: ${dogId}`;
+          res.statusCode = 200;
+          res.setHeader("Content-Type", `text/plain`);
+          return res.end(responseBody);
+        }
+      }
+    }
+
+    if (req.method === "POST" && req.url === "/dogs") {
+      const dogId = getNewDogId();
+
+      res.statusCode = 302;
+      res.setHeader("Location", `/dogs/${dogId}`);
+      return res.end();
+    }
     // Do not edit below this line
     // Return a 404 response when there is no matching route handler
     res.statusCode = 404;
