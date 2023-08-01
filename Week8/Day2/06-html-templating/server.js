@@ -105,6 +105,11 @@ const server = http.createServer((req, res) => {
     // Phase 2: GET /dogs/new
     if (req.method === "GET" && req.url === "/dogs/new") {
       // Your code here
+      const responseBody = fs.readFileSync("./views/create-dog.html", "utf-8");
+
+      res.statusCode = 200;
+      res.setHeader("Content-Type", "text/html");
+      return res.end(responseBody);
     }
 
     // Phase 3: GET /dogs/:dogId
@@ -114,6 +119,17 @@ const server = http.createServer((req, res) => {
         const dogId = urlParts[2];
         const dog = dogs.find((dog) => dog.dogId === Number(dogId));
         // Your code here
+
+        if (dog) {
+          const htmlPage = fs.readFileSync("./views/dog-details.html", "utf-8");
+          const responseBody = htmlPage
+            .replace(/#{name}/g, dog.name)
+            .replace(/#{age}/, dog.age);
+
+          res.statusCode = 200;
+          res.setHeader("Content-Type", "text/html");
+          return res.end(responseBody);
+        }
       }
     }
 
