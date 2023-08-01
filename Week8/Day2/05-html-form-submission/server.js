@@ -59,7 +59,7 @@ const server = http.createServer((req, res) => {
           <h2>Created Dog:</h2>
           <h3>Name: ${dog.name}</h3>
           <div>Pattern: ${dog.color}</div>
-          <div>Size: ${dog.age} years old</div>
+          <div>Age: ${dog.age} years old</div>
           <div>Description: ${dog.description}</div>
         </div>
       ` : "<div>No dog created yet!</div>");
@@ -107,6 +107,16 @@ const server = http.createServer((req, res) => {
     }
 
     // Your code here
+
+    /*
+      post route handler for cat and dog
+
+      1. get the req body data
+      2. create a cat/dog by using above cat/dog variables
+      3. set status code
+      4. end the response 
+
+    */
 
     res.statusCode = 404;
     res.end("Page Not Found");
