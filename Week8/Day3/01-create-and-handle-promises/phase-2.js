@@ -1,25 +1,61 @@
 function stretch(timeLeft) {
   // refactor your code from phase 1
   // Your code here
-
+  return new Promise((resolve, reject) => {
+    if (timeLeft < 1000) {
+      reject("Error:  you don't have enough time to stretch");
+    } else {
+      setTimeout(() => {
+        console.log("done stretching");
+        timeLeft -= 1000;
+        resolve(timeLeft);
+      }, 1000);
+    }
+  });
 }
 
 function runOnTreadmill(timeLeft) {
   // refactor your code from phase 1
   // Your code here
+  return new Promise((resolve, reject) => {
+    if (timeLeft < 500) {
+      reject("Error:  you don't have enough time to run on treadmill");
+    } else {
+      setTimeout(() => {
+        console.log("done running");
+        timeLeft -= 500;
+        resolve(timeLeft);
+      }, 500);
+    }
+  });
 }
 
 function liftWeights(timeLeft) {
   // refactor your code from phase 1
   // Your code here
+  return new Promise((resolve, reject) => {
+    if (timeLeft < 2000) {
+      reject("Error:  you don't have enough time to lift weights");
+    } else {
+      setTimeout(() => {
+        console.log("done lifting weights");
+        timeLeft -= 2000;
+        resolve(timeLeft);
+      }, 2000);
+    }
+  });
 }
 
 function workout(totalTime) {
   // refactor your code from phase 1
   // Your code here
-  stretch();
-  runOnTreadmill();
-  liftWeights();
+  stretch(totalTime)
+    .then((timeLeftAfterStretching) => runOnTreadmill(timeLeftAfterStretching))
+    .then((timeLeftAfterRunning) => liftWeights(timeLeftAfterRunning))
+    .then((timeLeft) =>
+      console.log(`done working out with ${timeLeft / 1000} seconds left`)
+    )
+    .catch((error) => console.log(error));
 }
 
 /* ============================ TEST YOUR CODE ============================
@@ -43,7 +79,7 @@ Comment in each invocation of your workout function below and run the file
 // done running on treadmill
 // Error:  you dont have enough time to lift weights
 
-// workout(4000);
+workout(4000);
 // should print out the following:
 //   done stretching
 //   done running on treadmill

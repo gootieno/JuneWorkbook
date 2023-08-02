@@ -63,6 +63,8 @@ function workout(totalTime) {
     .then(timeLeftAfterRunning => liftWeights(timeLeftAfterRunning))
     .then(res => console.log(`done working out with ${res/1000} seconds left`))
     .catch(err => console.log('Error: ', err));
+
+
 }
 
 
