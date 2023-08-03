@@ -19,7 +19,7 @@ Paste your code for fetch requests here once you finish each task.
 
 // Your code here
 // const getProducts = async () => {
-//   const response = await fetch("/products");
+  const response = await fetch("/products");
 //   console.log("response ok? ", response.ok);
 //   console.log("response status code ", response.status);
 //   console.log("response headers ", response.headers.get("Content-Type"));
