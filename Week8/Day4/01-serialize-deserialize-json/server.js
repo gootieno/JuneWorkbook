@@ -14,6 +14,8 @@ const server = http.createServer((req, res) => {
     // Parse the body of the request as x-www-form-urlencoded if Content-Type
       // header is x-www-form-urlencoded
     if (reqBody) {
+
+      // check for content type and parse accordingly through conditional
       req.body = reqBody
         .split("&")
         .map((keyValuePair) => keyValuePair.split("="))
@@ -33,6 +35,9 @@ const server = http.createServer((req, res) => {
     };
 
     // Return the `resBody` object as JSON in the body of the response
+
+
+    // stringify response and res.end(response)
   });
 });
 
