@@ -1,3 +1,43 @@
+:root {
+    --card-shadow: 0px 0px 5px gray;
+}
+
 #comments-container {
-    border:2px solid black;
+    width: fit-content;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#comments-form {
+    box-shadow: var(--card-shadow);
+    border-radius: 3px;
+    padding: 15px 10px;
+    display: flex;
+    gap: 10px;
+}
+
+#comments-list-container {
+    box-shadow: var(--card-shadow);
+    border-radius: 3px;
+    max-height: 200px;
+    overflow-y: scroll;
+    padding: 5px 10px;
+}
+
+#comments-list-container > p {
+    border-bottom: 1px solid gray;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    cursor: default;
+}
+
+#comments-list-container > p:hover {
+    color: teal;
+}
+
+#comment-submit {
+    width: fit-content;
+    cursor: pointer;
 }
