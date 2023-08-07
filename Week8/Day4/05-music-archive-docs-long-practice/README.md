@@ -100,8 +100,8 @@ Test this in Postman or by using `fetch` in the browser.
 
 Request components:
 
-- Method:
-- URL:
+- Method: 'GET'
+- URL: '/artists/:artistId'
 - Headers:
 - Body:
 

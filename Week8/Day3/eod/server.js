@@ -45,7 +45,10 @@ const server = http.createServer((req, res) => {
         commentsList += `<p>${comment}</p>`;
       }
 
-      const responseBody = htmlPage.replace(/#{comments}/, commentsList);
+      const responseBody = htmlPage.replace(
+        /#{comments}/,
+        comments.length ? commentsList : `<span>No Comments Created</span>`
+      );
 
       res.statusCode = 200;
       res.setHeader("Content-Type", "text/html");
