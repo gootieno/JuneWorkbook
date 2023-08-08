@@ -8,6 +8,12 @@ add.addEventListener("click", async () => {
     const url = data.message; // URL of new dog image
     console.log("data ", data);
     console.log("url from data ", url);
+
+    const urlParts = url.split("/");
+    console.log("url parts ", urlParts);
+
+    const dogBreed = urlParts[4];
+    console.log("dog breed ", dogBreed);
     /*--------------- Get breed (Hint: Parse from URL) ---------------- */
     // Your code here
 
@@ -45,7 +51,22 @@ add.addEventListener("click", async () => {
     3. append all elements in order all the way to live element
 
     */
+    const dogsContainer = document.querySelector(".gallery > ul");
 
+    const dogsListItem = document.createElement("li");
+    const figure = document.createElement("figure");
+    const img = document.createElement("img");
+    const figCaption = document.createElement("figcaption");
+
+    img.setAttribute("src", url);
+    figCaption.innerText = dogBreed;
+
+    figure.append(img, figCaption);
+    dogsListItem.appendChild(figure);
+
+    console.log("dogs list item ", dogsListItem);
+
+    dogsContainer.appendChild(dogsListItem);
     /*------------ Create new dog card with the url above ------------- */
     /* (use the HTML structure for the current dog image in the index.html
             file to create a new image with the url) */
@@ -53,6 +74,8 @@ add.addEventListener("click", async () => {
 
     /* Add the new dog card as a child to the ul in the .gallery element */
     // Your code here
+    const removeFirst = document.getElementById("remove-first");
+    removeFirst.removeAttribute('disabled');  
   } catch (e) {
     console.log("Couldn't fetch dog :(");
   }
@@ -65,6 +88,10 @@ removeFirst.addEventListener("click", () => {
   // Your code here
   /*-------------------- Remove the first dog card --------------------- */
   // Your code here
+  const firstDog = document.querySelector("ul > li");
+
+  if (firstDog) firstDog.remove();
+  else removeFirst.setAttribute("disabled", true);
 });
 
 /************************** REMOVE LAST DOG BUTTON ***************************/
@@ -74,4 +101,6 @@ removeLast.addEventListener("click", () => {
   // Your code here
   /*-------------------- Remove the last dog card ----------------------- */
   // Your code here
+  const lastDog = document.querySelectorAll("ul > li");
+  if (lastDog.length > 0) lastDog[lastDog.length - 1].remove();
 });
