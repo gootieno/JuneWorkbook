@@ -3,6 +3,17 @@ const fs = require("fs");
 
 const comments = [];
 
+const getContentType = (ext) => {
+  switch (ext) {
+    case "css":
+      return "text/css";
+    case "js":
+      return "text/javascript";
+    default:
+      return "text/plain";
+  }
+};
+
 const server = http.createServer((req, res) => {
   console.log(req.method, req.url);
 
@@ -27,12 +38,14 @@ const server = http.createServer((req, res) => {
     if (req.method === "GET" && req.url.startsWith("/static")) {
       const urlParts = req.url.split("/static");
       console.log("url parts ", urlParts);
-      const assetPath = urlParts[1];
 
+      const assetPath = urlParts[1];
+      const extension = assetPath.split(".")[1];
+      
       const responseBody = fs.readFileSync("./assets" + assetPath);
 
       res.statusCode = 200;
-      res.setHeader("Content-Type", "text/css");
+      res.setHeader("Content-Type", getContentType(extension));
       return res.end(responseBody);
     }
 
