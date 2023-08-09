@@ -1,0 +1,20 @@
+#outer-div {
+    background-color: aquamarine;
+    height: 200px;
+    width: 200px;
+    display:  flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#inner-div {
+    background-color: lightsalmon;
+    height: 120px;
+    width: 120px;
+}
+
+#sibling {
+    background-color: blue;
+    height: 50px;
+    width: 50px;
+}
