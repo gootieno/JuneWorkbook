@@ -5,11 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/static/index.css" rel="stylesheet">
+    <script src="/static/index.js"></script>
     <title>Comments App</title>
 </head>
 <body>
     <div id="comments-container">
-        <form id="comments-form" method="post" action="/comments">
+        <form id="comments-form">
             <div id="comment-input-field">
                 <label for="comment">Create a comment</label>
                 <input name="comment" id="comment" autocomplete="off"/>
@@ -17,7 +18,7 @@
             <button id="comment-submit">Create Comment</button>
         </form>
         <div id="comments-list-container">
-            #{comments}
+            
         </div>
     </div>
 </body>

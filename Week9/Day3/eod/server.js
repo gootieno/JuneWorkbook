@@ -24,15 +24,19 @@ const server = http.createServer((req, res) => {
 
   req.on("end", () => {
     if (resBody) {
-      req.body = resBody
-        .split("&")
-        .map((keyValuePair) => keyValuePair.split("=")) //[[query,Mars+Rover%21],[affiliate,nasa]]
-        .map(([key, val]) => [key, val.replace(/\+/g, " ")]) //[[query,Mars Rover%21],[affiliate,nasa]]
-        .map(([key, val]) => [key, decodeURIComponent(val)]) //[[query,Mars Rover!],[affiliate,nasa]]
-        .reduce((accum, [key, val]) => {
-          accum[key] = val;
-          return accum;
-        }, {});
+      if (req.headers["content-type"] === "application/json") {
+        req.body = JSON.parse(resBody);
+      } else {
+        req.body = resBody
+          .split("&")
+          .map((keyValuePair) => keyValuePair.split("=")) //[[query,Mars+Rover%21],[affiliate,nasa]]
+          .map(([key, val]) => [key, val.replace(/\+/g, " ")]) //[[query,Mars Rover%21],[affiliate,nasa]]
+          .map(([key, val]) => [key, decodeURIComponent(val)]) //[[query,Mars Rover!],[affiliate,nasa]]
+          .reduce((accum, [key, val]) => {
+            accum[key] = val;
+            return accum;
+          }, {});
+      }
     }
     console.log(req.body);
     if (req.method === "GET" && req.url.startsWith("/static")) {
@@ -41,7 +45,7 @@ const server = http.createServer((req, res) => {
 
       const assetPath = urlParts[1];
       const extension = assetPath.split(".")[1];
-      
+
       const responseBody = fs.readFileSync("./assets" + assetPath);
 
       res.statusCode = 200;
@@ -50,31 +54,27 @@ const server = http.createServer((req, res) => {
     }
 
     if (req.method === "GET" && req.url === "/") {
-      const htmlPage = fs.readFileSync("index.html", "utf-8");
-
-      let commentsList = "";
-
-      for (const comment of comments) {
-        commentsList += `<p>${comment}</p>`;
-      }
-
-      const responseBody = htmlPage.replace(
-        /#{comments}/,
-        comments.length ? commentsList : `<span>No Comments Created</span>`
-      );
+      const responseBody = fs.readFileSync("index.html", "utf-8");
 
       res.statusCode = 200;
       res.setHeader("Content-Type", "text/html");
       return res.end(responseBody);
     }
 
+    if (req.method === "GET" && req.url === "/comments") {
+      res.statusCode = 200;
+      res.setHeader("Content-Type", "application/json");
+      console.log(comments);
+      return res.end(JSON.stringify({ comments }));
+    }
+
     if (req.method === "POST" && req.url === "/comments") {
       const { comment } = req.body;
       comments.push(comment);
 
-      res.statusCode = 302;
-      res.setHeader("Location", "/");
-      return res.end();
+      res.statusCode = 201;
+      res.setHeader("Content-Type", "application/json");
+      return res.end(JSON.stringify({ comment }));
     }
   });
 });
