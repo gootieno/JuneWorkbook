@@ -1,0 +1,76 @@
+:root {
+    --card-shadow: 0px 0px 5px gray;
+}
+
+body {
+    background-color: lightgray;
+}
+
+#comments-container {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+#comments-form {
+    box-shadow: var(--card-shadow);
+    border-radius: 3px;
+    padding: 15px 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: azure;
+}
+
+#comments-list-container {
+    box-shadow: var(--card-shadow);
+    border-radius: 3px;
+    max-height: 200px;
+    overflow: auto;
+    padding: 5px 10px;
+    background-color: azure;
+    scrollbar-gutter: stable;
+}
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: gray;
+}
+
+#comments-list-container > p {
+    border-bottom: 1px solid gray;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    cursor: default;
+}
+
+span {
+    cursor: default;
+}
+
+#comments-list-container > p:hover {
+    color: teal;
+}
+
+#comment-submit {
+    width: fit-content;
+    cursor: pointer;
+    background-color: aliceblue;
+    border: 2px solid gray;
+    border-radius: 5px;
+    padding: 3px 10px;
+}
+
+#comment-submit:hover {
+    color: teal;
+    background-color: white;
+}
